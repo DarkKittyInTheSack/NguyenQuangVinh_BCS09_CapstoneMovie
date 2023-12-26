@@ -3,6 +3,7 @@ import { Tabs } from 'antd';
 import { quanLyRapServ } from '../../services/quanLyRapServ';
 import './lichChieuCumRap.css';
 import moment from 'moment';
+import { Link, useLocation } from 'react-router-dom';
 const LichChieuCumRap = ({ maHeThongRap }) => {
   const [cumRap, setCumRap] = useState([]);
 
@@ -57,13 +58,12 @@ const LichChieuCumRap = ({ maHeThongRap }) => {
                       {/* cột phải hiển thị tên phim và suất chiếu  */}
                       <div className="col_right">
                         <div>
-                          {/* tên phim  */}
-                          <h3 className="font-medium text-lg">
+                          <Link to={`/detail/${item.maPhim}`} className="font-medium text-lg">
                             <span className="text-white p-1 bg-orange-600 rounded mr-2">
                               C18
                             </span>
                             {item.tenPhim}
-                          </h3>
+                          </Link>
                           {/* danh sách 4 lịch chiếu  */}
                           <div className="grid grid-cols-2 gap-5 mt-3">
                             {item.lstLichChieuTheoPhim

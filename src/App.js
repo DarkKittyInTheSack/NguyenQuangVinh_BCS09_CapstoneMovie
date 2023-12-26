@@ -9,13 +9,16 @@ import AdminTemplate from './templates/AdminTemplate/AdminTemplate';
 import MovieManager from './pages/MovieManager/MovieManager';
 import UserManager from './pages/UserManager/UserManager';
 import AddMovie from './pages/AddMovie/AddMovie';
+import MovieDetail from './pages/MovieDetail/MovieDetail';
 
 function App() {
   return (
     <>
       <Routes>
         <Route element={<UserTemplate />} path="/">
-          <Route element={<HomePage />} index></Route>
+          <Route element={<HomePage />} index>
+          </Route>
+          <Route element = {<MovieDetail/>} path='/detail/:movieId'/>
         </Route>
         <Route element={<AdminTemplate />} path="/admin">
           <Route index element={<MovieManager />} />
