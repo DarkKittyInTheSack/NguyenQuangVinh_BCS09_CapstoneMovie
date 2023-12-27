@@ -10,6 +10,7 @@ import MovieManager from './pages/MovieManager/MovieManager';
 import UserManager from './pages/UserManager/UserManager';
 import AddMovie from './pages/AddMovie/AddMovie';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
+import TicketPage from './pages/TicketPage/TicketPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route element={<HomePage />} index>
           </Route>
           <Route element = {<MovieDetail/>} path='/detail/:movieId'/>
+          <Route element = {<TicketPage/>} path='/ticket/:movieId'/>
         </Route>
         <Route element={<AdminTemplate />} path="/admin">
           <Route index element={<MovieManager />} />

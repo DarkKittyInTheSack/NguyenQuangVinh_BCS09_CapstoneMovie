@@ -47,7 +47,7 @@ const ThongTinPhim = ({movieId}) => {
 
                 <div className="sub-btn my-4">
                     <Link to={'https://youtu.be/7cx9nCHsemc?si=nuE-yQCQwg5EBtIQ'} className='btn font-medium text-white text-base bg-green-500 px-3 py-2 rounded uppercase mr-4'>Xem trailer</Link>
-                    <Link className='btn font-medium text-white text-base bg-green-500 px-3 py-2 rounded uppercase mr-4'>Đặt vé ngay</Link>
+                    <Link to={`/ticket/${movieId}`} className='btn font-medium text-white text-base bg-green-500 px-3 py-2 rounded uppercase mr-4'>Đặt vé ngay</Link>
                 </div>
             </div>
         </div>
