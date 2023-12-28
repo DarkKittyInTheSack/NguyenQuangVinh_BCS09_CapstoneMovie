@@ -20,7 +20,7 @@ function App() {
           <Route element={<HomePage />} index>
           </Route>
           <Route element = {<MovieDetail/>} path='/detail/:movieId'/>
-          <Route element = {<TicketPage/>} path='/ticket/:movieId'/>
+          <Route element = {<TicketPage/>} path='/ticket/:movieId/:time'/>
         </Route>
         <Route element={<AdminTemplate />} path="/admin">
           <Route index element={<MovieManager />} />

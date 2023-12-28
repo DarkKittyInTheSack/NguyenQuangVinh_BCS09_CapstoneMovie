@@ -2,7 +2,7 @@ import React from 'react'
 import {Table} from 'antd'
 import Note from './Note';
 
-const TicketInfo = () => {
+const TicketInfo = ({tenPhim,gioChieu}) => {
 
   const dataSource = [
 
@@ -36,7 +36,7 @@ const TicketInfo = () => {
       <h2 className='text-white font-bold text-2xl uppercase text-center mb-3'>Đặt vé</h2>
       <div className="flex text-white border-t-2 py-3">
         <p>Tên phim:</p>
-        <span className='ml-3'>Killer of the full moon</span>
+        <span className='ml-3'>{tenPhim}</span>
       </div>
 
       <div className="flex text-white border-t-2 py-3">
@@ -46,11 +46,11 @@ const TicketInfo = () => {
 
       <div className="flex text-white border-t-2 border-b-2 py-3">
         <p>Giờ chiếu:</p>
-        <span className='ml-3'>12 giờ 30 phút</span>
+        <span className='ml-3'>{gioChieu}</span>
       </div>
 
       <div className=" text-white border-b-2 py-3">
-        <p className='uppercase mb-3'>Danh sách đặt vé</p>
+        <p className='uppercase mb-3 font-bold text-xl text-center'>Danh sách đặt vé</p>
         <Table dataSource={dataSource} columns={columns} className='bg-transparent text-white'/>
       </div>
 

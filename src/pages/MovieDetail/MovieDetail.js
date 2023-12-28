@@ -9,7 +9,7 @@ const MovieDetail = () => {
   return (
     <div>
         <ThongTinPhim movieId = {location.pathname.split('/')[2]}/>
-        <ThongTinCumRap/>
+        <ThongTinCumRap movieId = {location.pathname.split('/')[2]}/>
         <RelativeMovies/>
     </div>
   )
