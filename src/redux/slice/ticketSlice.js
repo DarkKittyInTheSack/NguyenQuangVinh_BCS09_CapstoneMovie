@@ -2,22 +2,31 @@ import { asyncThunkCreator, createAsyncThunk, createSlice } from '@reduxjs/toolk
 import { quanLyVe } from '../../services/quanLyVe';
 import axios from 'axios';
 
-const data = quanLyVe.getTicket().then((result) => {
-    let arr = result.data
-    return arr
-}).catch((err) => {
-    console.log(err);
-});
+export const getTicketAsyncThunk = createAsyncThunk('ticket/getAllSeat', async (data,thunkAPI) =>{
+    try {
+        const result = await quanLyVe.getTicket()
+        return result.data
+    } catch (error) {
+        return error
+    }
+})
 
 const initialState = {
-    listSeat:data
+    listSeat:[]
 }
 
 const ticketSlice = createSlice({
   name: 'ticket',
   initialState,
   reducers: {},
-  
+  extraReducers: (builder) =>{
+    builder.addCase(getTicketAsyncThunk.fulfilled, (state,action) =>{
+        
+        console.log(action.payload)
+        state.listSeat = action.payload
+        console.log(state.listSeat);
+    } )
+  }
 });
 
 export const {} = ticketSlice.actions

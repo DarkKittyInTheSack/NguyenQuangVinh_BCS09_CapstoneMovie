@@ -76,20 +76,10 @@ const MovieManager = () => {
     },
   ];
   useEffect(() => {
-    // quanLyPhimServ
-    //   .getAllMovie()
-    //   .then((res) => {
-    //     console.log(res);
-    //     setListMovie(res.data.content);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
     // gọi dữ liệu thông qua phương thức được tạo ra từ thunk
     dispatch(
       getAllMovieThunk({
-        hoTen: 'Đông',
-        gioiTinh: 'Nam',
+       
       })
     );
   }, []);

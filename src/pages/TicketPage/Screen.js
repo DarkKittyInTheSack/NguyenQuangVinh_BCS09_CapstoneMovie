@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { seatSetting } from '../../services/seatSetting'
+import { getTicketAsyncThunk } from '../../redux/slice/ticketSlice'
 
 const Screen = () => {
     const {listSeat} = useSelector((state) => state.ticketSlice)
+    const dispatch = useDispatch()
     let seatPickData = {}
     let arrSeatChoose = [],arrPrice = []
-    const [seatList,setSeatList] = useState([])
 
     useEffect(() =>{
-        listSeat
-        .then((result) => {
-            setSeatList(result)
-        }).catch((err) => {
-            console.log(err);
-        });
+        dispatch(getTicketAsyncThunk({}))
     },[])
   return (
     <div>
@@ -22,7 +18,7 @@ const Screen = () => {
         <div className="screen mx-auto w-full mb-3"></div>
         <div className="flex justify-between items-center">
           <p className="rowNumber font-bold text-xl text-center"></p>
-          {seatList
+          {listSeat
             .filter((item, index) => item.hang == "A")
             .map((item, index) => {
               const { danhSachGhe } = item;
@@ -37,7 +33,7 @@ const Screen = () => {
             })}
         </div>
         <div className="">
-          {seatList.map((item, index) => {
+          {listSeat.map((item, index) => {
             const { hang, danhSachGhe } = item;
             return (
               <div>
