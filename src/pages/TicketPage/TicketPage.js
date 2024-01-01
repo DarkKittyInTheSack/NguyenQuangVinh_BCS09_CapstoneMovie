@@ -23,7 +23,7 @@ const TicketPage = () => {
       {
         movieInfo.map((item,index) =>{
           const {tenPhim} = item
-          return <div className="flex items-center justify-center">
+          return <div className="flex items-center justify-center md:flex-row sm:flex-col">
           <div className="left p-3">
             <Screen/>
           </div>

@@ -58,7 +58,7 @@ const LichChieuCumRap = ({ maHeThongRap }) => {
                       {/* cột phải hiển thị tên phim và suất chiếu  */}
                       <div className="col_right">
                         <div>
-                          <Link to={`/detail/Ea%20consectetur%20volu`} className="font-medium text-lg">
+                          <Link to={`/detail/Laboriosam%20ex%20quasi`} className="font-medium text-lg">
                             <span className="text-white p-1 bg-orange-600 rounded mr-2">
                               C18
                             </span>

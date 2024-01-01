@@ -15,16 +15,16 @@ const ThongTinPhim = ({movieId}) => {
         });
     },[])
   return (
-    <div className='container my-4 bg-slate-600'>
+    <div className='container my-4 bg-slate-600 sm:w-full'>
         <Link to={'/'} className='block font-medium text-sm text-white my-3 mx-3'>Trang chủ</Link>
         {
             movieInfo.map((item,index) =>{
                 const {hinhAnh,tenPhim,moTa,danhGia,ngayKhoiChieu} = item
-                return <div className="flex mt-5 justify-center" key={index}> 
-                <div className="left w-5/12 mb-5">
-                    <img src={hinhAnh} alt=""/>
+                return <div className="movie_info flex sm:flex-col md:flex-row md:text-left mt-5 justify-center" key={index}> 
+                <div className="left md:w-5/12 sm:w-full mb-5">
+                    <img src={hinhAnh} alt="" className='block w-full'/>
                 </div>
-                <div className="right w-6/12 mx-5">
+                <div className="right md:w-6/12 sm:w-full mx-5">
                     <h2 className='font-bold text-white text-base uppercase mb-2'>{tenPhim}</h2>
                     <p className='text-white font-medium text-base'>{moTa}</p>
                     <div className="my-2 flex text-white text-base font-medium">

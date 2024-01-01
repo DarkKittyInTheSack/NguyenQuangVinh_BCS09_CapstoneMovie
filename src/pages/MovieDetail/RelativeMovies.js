@@ -6,7 +6,7 @@ const RelativeMovies = () => {
     <div className='container my-3'>
         <div className="my-2">
             <h2 className='font-medium text-xl'>Cùng thể loại</h2>
-            <div className="my-3 grid grid-cols-6 items-center">
+            <div className="my-3 grid md:grid-cols-6 sm:grid-cols-3 items-center relative_movie_items">
                 <div className="item mx-auto">
                     <img src="https://movienew.cybersoft.edu.vn/hinhanh/ke-an-hon_gp01.png"/>
                     <p className='font-medium text-base my-1'>Relative Movie</p>
@@ -65,7 +65,7 @@ const RelativeMovies = () => {
 
         <div className="my-2">
             <h2 className='font-medium text-xl'>Có thể bạn sẽ thích</h2>
-            <div className="my-3 grid grid-cols-6 items-center">
+            <div className="my-3 grid md:grid-cols-6 sm:grid-cols-3 items-center relative_movie_items">
                 <div className="item mx-auto">
                     <img src="https://movienew.cybersoft.edu.vn/hinhanh/ke-an-hon_gp01.png"/>
                     <p className='font-medium text-base my-1'>Relative Movie</p>

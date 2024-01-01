@@ -60,10 +60,10 @@ const ThongTinCumRap = ({movieId}) => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 w-1/3 ml-10">
-                  <Link to={`/ticket/${movieId}/12h30`} className='font-medium text-thin text-sm border-t-2 border-b-2 border-l-2 border-r-2 rounded mr-3 text-center py-1 border-green-700 text-gray-700'> 12h30 - 14h00</Link>
-                  <Link to={`/ticket/${movieId}/14h30`} className='font-medium text-thin text-sm border-t-2 border-b-2 border-l-2 border-r-2 rounded mr-3 text-center py-1 border-green-700 text-gray-700'> 14h30 - 16h00</Link>
-                  <Link to={`/ticket/${movieId}/19h00`} className='font-medium text-thin text-sm border-t-2 border-b-2 border-l-2 border-r-2 rounded mr-3 text-center py-1 border-green-700 text-gray-700'> 19h00 - 21h00</Link>
+                <div className="grid grid-cols-3 w-1/3 ml-10 md:grid-cols-3 sm:grid-cols-2 cum_rap_time">
+                  <Link to={`/ticket/${movieId}/12h30`} className='cum_rap_item font-medium text-thin text-sm border-t-2 border-b-2 border-l-2 border-r-2 rounded mr-3 text-center py-1 border-green-700 text-gray-700 sm:mt-3'> 12h30 - 14h00</Link>
+                  <Link to={`/ticket/${movieId}/14h30`} className='cum_rap_item font-medium text-thin text-sm border-t-2 border-b-2 border-l-2 border-r-2 rounded mr-3 text-center py-1 border-green-700 text-gray-700 sm:mt-3'> 14h30 - 16h00</Link>
+                  <Link to={`/ticket/${movieId}/19h00`} className='cum_rap_item font-medium text-thin text-sm border-t-2 border-b-2 border-l-2 border-r-2 rounded mr-3 text-center py-1 border-green-700 text-gray-700 sm:mt-3'> 19h00 - 21h00</Link>
                 </div>
               </div>
               ,

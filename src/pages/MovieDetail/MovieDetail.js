@@ -3,6 +3,7 @@ import ThongTinPhim from './ThongTinPhim'
 import { Link, useLocation } from 'react-router-dom'
 import ThongTinCumRap from './ThongTinCumRap'
 import RelativeMovies from './RelativeMovies'
+import './MovieDetail.scss'
 
 const MovieDetail = () => {
     const location = useLocation()
