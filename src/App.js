@@ -11,14 +11,6 @@ import UserManager from './pages/UserManager/UserManager';
 import AddMovie from './pages/AddMovie/AddMovie';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
 import TicketPage from './pages/TicketPage/TicketPage';
-import { Routes, Route } from "react-router-dom";
-import UserTemplate from "./templates/UserTemplate/UserTemplate";
-import HomePage from "./pages/HomePage/HomePage";
-import Login from "./pages/Login/Login";
-import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
-import MovieManager from "./pages/MovieManager/MovieManager";
-import UserManager from "./pages/UserManager/UserManager";
-import AddMovie from "./pages/AddMovie/AddMovie";
 import SignUp from "./pages/SignUp/SignUp";
 
 function App() {
