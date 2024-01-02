@@ -88,7 +88,7 @@ const Banner = () => {
         return (
           <div key={index}>
             <img
-              className="w-full h-[700px] object-cover"
+              className="w-full h-[600px] object-cover"
               src={item.hinhAnh}
               alt=""
             />

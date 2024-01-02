@@ -7,6 +7,7 @@ import './MovieDetail.scss'
 
 const MovieDetail = () => {
     const location = useLocation()
+    console.log(location.pathname.split('/')[2]);
   return (
     <div>
         <ThongTinPhim movieId = {location.pathname.split('/')[2]}/>

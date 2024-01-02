@@ -20,11 +20,6 @@ const TicketInfo = ({tenPhim,gioChieu}) => {
       key: 'age',
     },
     {
-      title: 'Giá',
-      dataIndex: 'address',
-      key: 'address',
-    },
-    {
       title: 'Tùy chọn',
       dataIndex: 'address',
       key: 'address',
