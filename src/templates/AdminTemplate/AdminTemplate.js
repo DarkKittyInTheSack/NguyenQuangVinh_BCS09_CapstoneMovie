@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
-} from '@ant-design/icons';
-import { Layout, Menu, Button, theme } from 'antd';
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+} from "@ant-design/icons";
+import { Layout, Menu, Button, theme } from "antd";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const { Header, Sider, Content } = Layout;
 const AdminTemplate = () => {
   const { user } = useSelector((state) => state.userSlice);
@@ -20,12 +20,12 @@ const AdminTemplate = () => {
   useEffect(() => {
     // kiểm tra người dùng nếu không phải admin sẽ đá người dùng về trang google hoặc bất kì trang bạn muốn
     if (user) {
-      if (user.maLoaiNguoiDung != 'QuanTri') {
-        window.location.href = 'https://www.google.com/';
+      if (user.maLoaiNguoiDung != "QuanTri") {
+        window.location.href = "https://www.google.com/";
       }
     } else {
       // chưa đăng nhập nên không có dữ liệu trên redux
-      navigate('/login');
+      navigate("/login");
     }
   }, [location.pathname]);
 
@@ -43,26 +43,31 @@ const AdminTemplate = () => {
           defaultSelectedKeys={[location.pathname]}
           items={[
             {
-              key: '/admin/manager-user',
+              key: "/admin/manager-user",
               icon: <UserOutlined />,
-              label: <Link to={'/admin/manager-user'}>Quản lí người dùng</Link>,
+              label: <Link to={"/admin/manager-user"}>Quản lí người dùng</Link>,
             },
             {
-              key: '/admin',
+              key: "/admin",
               icon: <VideoCameraOutlined />,
-              label: <Link to={'/admin'}>Quản lí phim</Link>,
+              label: <Link to={"/admin"}>Quản lí phim</Link>,
             },
             {
-              key: '/admin/add-movie',
+              key: "/admin/add-movie",
               icon: <VideoCameraOutlined />,
-              label: <Link to={'/admin/add-movie'}>Tạo phim</Link>,
+              label: <Link to={"/admin/add-movie"}>Tạo phim</Link>,
             },
             {
-              key: '/admin/manager-order',
+              key: "/admin/manager-order",
               icon: <UploadOutlined />,
               label: (
-                <Link to={'/admin/manager-order'}>Quản lí lịch đặt vé</Link>
+                <Link to={"/admin/manager-order"}>Quản lí lịch đặt vé</Link>
               ),
+            },
+            {
+              key: "/admin/films",
+              icon: <VideoCameraOutlined />,
+              label: <Link to={"/admin/films"}>Films</Link>,
             },
           ]}
         />
@@ -79,7 +84,7 @@ const AdminTemplate = () => {
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
             style={{
-              fontSize: '16px',
+              fontSize: "16px",
               width: 64,
               height: 64,
             }}
@@ -87,7 +92,7 @@ const AdminTemplate = () => {
         </Header>
         <Content
           style={{
-            margin: '24px 16px',
+            margin: "24px 16px",
             padding: 24,
             minHeight: 280,
             background: colorBgContainer,

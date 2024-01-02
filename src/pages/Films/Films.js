@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { quanLyPhimServ } from "../../services/quanLyPhimServ";
-import { Table, Tag, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMovieThunk } from "../../redux/slice/movieSlice";
-import Link from "antd/es/typography/Link";
-const MovieManager = () => {
+import { Table } from "antd";
+import { Link } from "react-router-dom";
+
+const Films = () => {
   const dispatch = useDispatch();
   const { listMovie } = useSelector((state) => state.movieSlice);
   // const [listMovie, setListMovie] = useState([]);
@@ -67,11 +68,17 @@ const MovieManager = () => {
             >
               Xoá
             </button>
-            <Link
-              to={"admin/add-movie"}
-              className="text-white bg-yellow-600 py-2 px-4 rounded-md"
-            >
+            <button className="text-white bg-yellow-600 py-2 px-4 rounded-md">
               Sửa
+            </button>
+            {/* <button className="text-white bg-black py-2 px-4 rounded-md">
+              Tạo lịch chiếu
+            </button> */}
+            <Link
+              to={"/taolichchieu"}
+              className="ml-5 py-2 px-5 bg-black text-white rounded-md hover:bg-opacity-70 duration-500"
+            >
+              Tạo lịch chiếu <span aria-hidden="true">→</span>
             </Link>
           </div>
         );
@@ -116,4 +123,4 @@ const MovieManager = () => {
   );
 };
 
-export default MovieManager;
+export default Films;
