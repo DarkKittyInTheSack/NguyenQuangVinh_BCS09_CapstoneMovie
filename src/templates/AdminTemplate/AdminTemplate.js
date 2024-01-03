@@ -9,6 +9,7 @@ import {
 import { Layout, Menu, Button, theme } from "antd";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+// import { TaoLichChieu } from "../../pages/TaoLichChieu/TaoLichChieu";
 const { Header, Sider, Content } = Layout;
 const AdminTemplate = () => {
   const { user } = useSelector((state) => state.userSlice);
@@ -69,6 +70,11 @@ const AdminTemplate = () => {
               icon: <VideoCameraOutlined />,
               label: <Link to={"/admin/films"}>Films</Link>,
             },
+            // {
+            //   key: "/admin/taolichchieu",
+            //   icon: <TaoLichChieu />,
+            //   label: <Link to={"/admin/taolichchieu"}>Films</Link>,
+            // },
           ]}
         />
       </Sider>

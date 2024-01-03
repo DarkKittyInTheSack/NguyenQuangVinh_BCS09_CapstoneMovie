@@ -19,15 +19,17 @@ function App() {
       <Routes>
         <Route element={<UserTemplate />} path="/">
           <Route element={<HomePage />} index></Route>
+          {/* <Route element={<MovieDetail />} path="/detail/:movieId" /> */}
+          {/* <Route element={<TicketPage />} path="/ticket/:movieId/:time" /> */}
         </Route>
         <Route element={<AdminTemplate />} path="/admin">
           <Route index element={<MovieManager />} />
           <Route element={<UserManager />} path="manager-user" />
           <Route element={<AddMovie />} path="add-movie" />
           <Route element={<Films />} path="films" />
-          {/* <Route element={<TaoLichChieu />} /> */}
+          <Route element={<TaoLichChieu />} path="taolichchieu" />
         </Route>
-        <Route element={<TaoLichChieu />} path="/taolichchieu"></Route>
+        {/* // <Route element={<TaoLichChieu />}></Route> */}
         <Route element={<Login />} path="/login"></Route>
         <Route element={<SignUp />} path="/signup"></Route>
         {/* page 404  */}
