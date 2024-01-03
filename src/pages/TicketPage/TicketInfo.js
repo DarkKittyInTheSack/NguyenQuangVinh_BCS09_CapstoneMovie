@@ -1,8 +1,10 @@
 import React from 'react'
 import {Table} from 'antd'
 import Note from './Note';
+import { seatSetting } from '../../services/seatSetting';
 
 const TicketInfo = ({tenPhim,gioChieu}) => {
+  const dataForTable = seatSetting.getItemFromStorageByNameAndTime(tenPhim,gioChieu)
 
   const dataSource = [
 

@@ -15,7 +15,7 @@ const {listFilm} = useSelector((state) => state.filmSlice)
             <h2 className='font-medium text-xl'>Cùng thể loại</h2>
             <div className="my-3 gap-5 grid md:grid-cols-6 sm:grid-cols-3 items-center relative_movie_items">
                 {
-                    listFilm.map((item,index) =>{
+                    listFilm.slice(0,6).map((item,index) =>{
                         const {hinhAnh,danhGia,tenPhim} = item
                         return <div className="item mx-auto">
                         <Link to={`/detail/${tenPhim}`}>
@@ -40,7 +40,7 @@ const {listFilm} = useSelector((state) => state.filmSlice)
             <h2 className='font-medium text-xl'>Có thể bạn sẽ thích</h2>
             <div className="my-3 gap-5 grid md:grid-cols-6 sm:grid-cols-3 items-center relative_movie_items">
                 {
-                    listFilm.map((item,index) =>{
+                    listFilm.slice(0,6).map((item,index) =>{
                         const {hinhAnh,danhGia,tenPhim} = item
                         return <div className="item mx-auto">
                         <Link to={`/detail/${tenPhim}`}>

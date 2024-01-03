@@ -25,7 +25,7 @@ const TicketPage = () => {
           const {tenPhim} = item
           return <div className="flex items-center justify-center md:flex-row sm:flex-col">
           <div className="left p-3">
-            <Screen/>
+            <Screen tenPhim={tenPhim} gioChieu={location.pathname.split('/')[3]}/>
           </div>
           <div className="right w-5/12 mx-3">
             <TicketInfo tenPhim={tenPhim} gioChieu={location.pathname.split('/')[3]}/>

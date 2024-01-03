@@ -3,15 +3,25 @@ import { useDispatch, useSelector } from 'react-redux'
 import { seatSetting } from '../../services/seatSetting'
 import { getTicketAsyncThunk } from '../../redux/slice/ticketSlice'
 
-const Screen = () => {
+const Screen = ({tenPhim,gioChieu}) => {
     const {listSeat} = useSelector((state) => state.ticketSlice)
+    const {user} = useSelector((state) => state.userSlice)
     const dispatch = useDispatch()
     let seatPickData = {}
+    seatPickData.film = tenPhim
+    seatPickData.time = gioChieu
+    user ?
+    seatPickData.customer = user.hoTen : seatPickData.customer = 'Customer'
+
     let arrSeatChoose = [],arrPrice = []
 
+    const [arrData,setData] = useState([])
     useEffect(() =>{
         dispatch(getTicketAsyncThunk({}))
+        setData(seatSetting.getItemFromStorage())
     },[])
+
+    console.log(arrData);
   return (
     <div>
         <div className="mx-auto my-3">
@@ -75,11 +85,30 @@ const Screen = () => {
         </div>
         <button
           onClick={() => {
-            seatPickData.customer = ''
-            seatPickData.arrSeat = arrSeatChoose
-            seatPickData.price = arrPrice
+            if(arrData != null){
+              for(let item of arrData){
+                const {customer,arrSeat} = item
+                if(customer.includes(user.hoTen) === true){
+                  arrSeatChoose.map((item) => arrSeat.push(item))
+                  seatSetting.removeSeatList()
+                  seatSetting.addSeatListToStorage(arrData)
+                }else{
+                  seatPickData.arrSeat = arrSeatChoose
+                  arrData.push(seatPickData)
+                  seatSetting.removeSeatList()
+                  seatSetting.addSeatListToStorage(arrData)
+                  break;
+                }
+              }
+            }else{
+              let tempArr = []
+              seatPickData.arrSeat = arrSeatChoose
+              tempArr.push(seatPickData)
+              seatSetting.removeSeatList()
+              seatSetting.addSeatListToStorage(tempArr)
+            }
 
-            seatSetting.addSeatListToStorage(seatPickData)
+            console.log(arrData);
           }}
           type="button"
           className="text-white mx-auto bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-3 my-3 mx-auto"

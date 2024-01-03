@@ -9,7 +9,8 @@ const MovieDetail = () => {
     const location = useLocation()
     console.log(location.pathname.split('/')[2]);
   return (
-    <div>
+    <div className='container '>
+      <Link to={'/'} className='block font-medium text-sm text-blue-800 my-3'>Trang chủ / {location.pathname.split('/')[2].replaceAll('%20'," ")}</Link>
         <ThongTinPhim movieId = {location.pathname.split('/')[2]}/>
         <ThongTinCumRap movieId = {location.pathname.split('/')[2]}/>
         <RelativeMovies/>
