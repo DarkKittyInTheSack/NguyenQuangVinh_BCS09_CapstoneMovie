@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {Table} from 'antd'
 import Note from './Note';
 import { seatSetting } from '../../services/seatSetting';
 
 const TicketInfo = ({tenPhim,gioChieu}) => {
   const dataForTable = seatSetting.getItemFromStorageByNameAndTime(tenPhim,gioChieu)
+  const [listSeatBook,setListSeat] = useState([])
+
+  useEffect(() =>{
+    setListSeat(dataForTable)
+  },[])
 
   const dataSource = [
 
@@ -13,13 +18,13 @@ const TicketInfo = ({tenPhim,gioChieu}) => {
   const columns = [
     {
       title: 'Khách hàng',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'customer',
+      key: 'customer',
     },
     {
       title: 'Số ghế',
-      dataIndex: 'age',
-      key: 'age',
+      dataIndex: 'arrSeat',
+      key: 'arrSeat',
     },
     {
       title: 'Tùy chọn',
@@ -48,7 +53,7 @@ const TicketInfo = ({tenPhim,gioChieu}) => {
 
       <div className=" text-white border-b-2 py-3">
         <p className='uppercase mb-3 font-bold text-xl text-center'>Danh sách đặt vé</p>
-        <Table dataSource={dataSource} columns={columns} className='bg-transparent text-white'/>
+        <Table dataSource={listSeatBook} columns={columns} className='bg-transparent text-white'/>
       </div>
 
       <Note/>

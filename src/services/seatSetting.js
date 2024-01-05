@@ -11,7 +11,14 @@ export const seatSetting = {
     getItemFromStorageByNameAndTime: (name,time) =>{
         const arr = []
         const currentArr = JSON.parse(localStorage.getItem('seatList'))
-        
+        currentArr.map((item,index) =>{
+            const {film,time} = item
+            if(film.includes(name) && time.includes(time)){
+                arr.push(item)
+            }
+        })
+
+        return arr
     },
 
     removeSeatList: () =>{
