@@ -9,6 +9,8 @@ import { saveLocalStore } from '../../utils/local';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { saveInfoUser } from '../../redux/slice/userSlice';
+import './Login.scss'
+
 const Login = () => {
   const dispatch = useDispatch();
   const [messageApi, contextHolder] = message.useMessage();
@@ -65,13 +67,13 @@ const Login = () => {
       {contextHolder}
       <div className="h-screen flex justify-center items-center">
         <div className="container">
-          <div className="grid grid-cols-2">
+          <div className="grid md:grid-cols-2 sm:grid-cols-1">
             <div className="col_left">
               <Lottie options={defaultOptions} height={400} width={400} />
             </div>
-            <div className="col_right">
+            <div className="col_right md:mx-4 sm:my-3">
               <form onSubmit={handleSubmit} className="space-y-5">
-                <h2 className="font-bold text-3xl">Đăng nhập Moive</h2>
+                <h2 className="font-bold text-3xl block sm:text-center">Đăng nhập Moive</h2>
                 <div>
                   <label
                     htmlFor="taiKhoan"

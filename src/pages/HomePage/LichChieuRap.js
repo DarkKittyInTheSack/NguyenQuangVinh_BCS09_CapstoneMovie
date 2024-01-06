@@ -43,11 +43,6 @@ const LichChieuRap = () => {
               children: <LichChieuCumRap maHeThongRap={item.maHeThongRap} />,
             };
           })}
-          // onChange={(activeKey) => {
-          //   console.log(activeKey);
-          //   // cứ mỗi lần ng dùng bấm sẽ set lại mã hệ thống rạp
-          //   setMaHeThongRap(activeKey);
-          // }}
         />
       </div>
     </div>
