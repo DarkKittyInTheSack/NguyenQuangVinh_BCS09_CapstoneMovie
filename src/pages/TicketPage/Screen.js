@@ -48,7 +48,7 @@ const Screen = ({tenPhim,gioChieu}) => {
             return (
               <div>
                 <div className="flex justify-between items-center" key={index}>
-                  <p className="rowNumber font-bold text-xl text-center">
+                  <p className="rowNumber font-bold text-xl text-center" key={index}>
                     {hang}
                   </p>
                   <div className="flex justify-between items-center">

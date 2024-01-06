@@ -26,7 +26,7 @@ const movieSlice = createSlice({
       console.log(state);
       console.log(action);
       state.listMovie = action.payload;
-    });
+    })
   },
 });
 

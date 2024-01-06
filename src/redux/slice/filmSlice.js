@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { quanLyPhimServ } from '../../services/quanLyPhimServ'
+import { quanLyDanhSachPhim } from '../../services/quanLyDanhSachPhim'
 
 export const getFilmListAsyncThunk = createAsyncThunk('film/getFilmSync', async (data,api) =>{
     try {

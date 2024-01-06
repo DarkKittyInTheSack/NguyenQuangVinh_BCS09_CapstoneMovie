@@ -23,12 +23,12 @@ const FilmList = () => {
           <div className="grid md:grid-cols-5 sm:grid-cols-2 my-5 ">
               {
                 listFilm.map((item,index) => {
-                  const {hinhAnh,tenPhim,ngayKhoiChieu,dangChieu,sapChieu,trailer} = item
+                  const {hinhAnh,tenPhim,ngayKhoiChieu,dangChieu,sapChieu,trailer,maPhim} = item
                   return isAvailable === true && dangChieu === true ? <div className="w-2/3" key={index}>
-                    <Link to={`/detail/${tenPhim}`}>
+                    <Link to={`/detail/${maPhim}`}>
                       <img src={hinhAnh} alt="img" className='w-full'/>
                     </Link>
-                    <Link to={`/detail/${tenPhim}`}>
+                    <Link to={`/detail/${maPhim}`}>
                       <p className="font-medium text-sm text-gray-800 hover:text-blue-800 transition-all mt-3">{tenPhim}</p>
                     </Link>
                     <span className='font-medium text-sm text-gray-600'>{ngayKhoiChieu.split('-')[0]}</span>

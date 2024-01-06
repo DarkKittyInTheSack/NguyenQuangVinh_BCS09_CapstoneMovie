@@ -7,34 +7,28 @@ import { quanLyDanhSachPhim } from '../../services/quanLyDanhSachPhim'
 
 const TicketPage = () => {
   const location = useLocation()
-  const [movieInfo,setMovieInfo] = useState([])
+  const [movieInfo,setMovieInfo] = useState({})
     useEffect(() =>{
-        quanLyDanhSachPhim.getMovieByName(location.pathname.split('/')[2])
+        quanLyDanhSachPhim.getMovieByID(location.pathname.split('/')[2])
         .then((result) => {
             console.log(result.data.content);
             setMovieInfo(result.data.content)
         }).catch((err) => {
             console.log(err);
         });
-    },[])
+    },{})
 
   return (
     <div className='ticketPage'>
-      {
-        movieInfo.map((item,index) =>{
-          const {tenPhim} = item
           return <div className="flex items-center justify-center md:flex-row sm:flex-col">
           <div className="left p-3">
-            <Screen tenPhim={tenPhim} gioChieu={location.pathname.split('/')[3]}/>
+            <Screen tenPhim={movieInfo.tenPhim} gioChieu={location.pathname.split('/')[3]} maPhim = {location.pathname.split('/')[2]}/>
           </div>
           <div className="right w-5/12 mx-3">
-            <TicketInfo tenPhim={tenPhim} gioChieu={location.pathname.split('/')[3]}/>
+            <TicketInfo tenPhim={movieInfo.tenPhim} gioChieu={location.pathname.split('/')[3]} maPhim = {location.pathname.split('/')[2]}/>
           </div>
           
         </div>
-        })
-      }
-        
     </div>
   )
 }
