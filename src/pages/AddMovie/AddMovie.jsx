@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { DatePicker, Space, Switch, Rate } from 'antd';
-import { useFormik } from 'formik';
-import './addMovie.css';
-import moment from 'moment';
-import { quanLyPhimServ } from '../../services/quanLyPhimServ';
+import React, { useState } from "react";
+import { DatePicker, Space, Switch, Rate } from "antd";
+import { useFormik } from "formik";
+import "./addMovie.css";
+import moment from "moment";
+import { quanLyPhimServ } from "../../services/quanLyPhimServ";
 const AddMovie = () => {
   const formik = useFormik({
     initialValues: {
-      tenPhim: '',
-      trailer: '',
-      moTa: '',
-      ngayKhoiChieu: '',
+      tenPhim: "",
+      trailer: "",
+      moTa: "",
+      ngayKhoiChieu: "",
       dangChieu: true,
-      sapChieu: '',
-      hot: '',
-      danhGia: '',
-      hinhAnh: '',
+      sapChieu: "",
+      hot: "",
+      danhGia: "",
+      hinhAnh: "",
     },
     onSubmit: (values, { resetForm }) => {
       console.log(values);
@@ -24,20 +24,20 @@ const AddMovie = () => {
       const formData = new FormData();
       for (let key in values) {
         console.log(key);
-        if (key == 'hinhAnh') {
-          formData.append('File', values[key]);
-        } else if (key == 'ngayKhoiChieu') {
-          formData.append(key, moment(values[key]).format('DD-MM-YYYY'));
+        if (key == "hinhAnh") {
+          formData.append("File", values[key]);
+        } else if (key == "ngayKhoiChieu") {
+          formData.append(key, moment(values[key]).format("DD-MM-YYYY"));
         } else {
           formData.append(key, values[key]);
         }
       }
-      formData.append('maNhom', 'GP08');
+      // formData.append('maNhom', 'GP08');
       quanLyPhimServ
         .addMovie(formData)
         .then((res) => {
           resetForm();
-          setImage('');
+          setImage("");
           // thông báo
           // Chuyển hướng người dùng về lại trang quản lí phim
         })
@@ -48,7 +48,7 @@ const AddMovie = () => {
     },
   });
 
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
   const {
     handleBlur,
     handleChange,
@@ -137,10 +137,10 @@ const AddMovie = () => {
           <DatePicker
             onChange={(date, dateString) => {
               console.log(date);
-              setFieldValue('ngayKhoiChieu', date);
+              setFieldValue("ngayKhoiChieu", date);
               // setFieldValue('ngayKhoiChieu', dateString);
             }}
-            format={'DD-MM-YYYY'}
+            format={"DD-MM-YYYY"}
             // changeOnBlur={handleBlur}
             value={values.ngayKhoiChieu}
           />
@@ -157,7 +157,7 @@ const AddMovie = () => {
           </label>
           <Switch
             onChange={(checked, event) => {
-              setFieldValue('dangChieu', checked);
+              setFieldValue("dangChieu", checked);
             }}
             value={values.dangChieu}
           />
@@ -174,7 +174,7 @@ const AddMovie = () => {
           </label>
           <Switch
             onChange={(checked, event) => {
-              setFieldValue('sapChieu', checked);
+              setFieldValue("sapChieu", checked);
             }}
             value={values.sapChieu}
           />
@@ -191,7 +191,7 @@ const AddMovie = () => {
           </label>
           <Switch
             onChange={(checked, event) => {
-              setFieldValue('hot', checked);
+              setFieldValue("hot", checked);
             }}
             value={values.hot}
           />
@@ -210,7 +210,7 @@ const AddMovie = () => {
             value={values.danhGia}
             onChange={(value) => {
               console.log(value);
-              setFieldValue('danhGia', value);
+              setFieldValue("danhGia", value);
             }}
           />
           {/* {errors.taiKhoan && touched.taiKhoan ? (
@@ -241,7 +241,7 @@ const AddMovie = () => {
                 console.log(urlImg);
                 setImage(urlImg);
               }
-              setFieldValue('hinhAnh', img);
+              setFieldValue("hinhAnh", img);
             }}
           />
           {/* {errors.taiKhoan && touched.taiKhoan ? (
