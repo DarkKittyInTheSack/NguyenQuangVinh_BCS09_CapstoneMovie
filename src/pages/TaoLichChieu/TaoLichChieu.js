@@ -1,10 +1,25 @@
 import { DatePicker } from "antd";
 import { useFormik } from "formik";
 import moment from "moment";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { quanLyPhimServ } from "../../services/quanLyPhimServ";
+import { quanLyRapServ } from "../../services/quanLyRapServ";
+import LichChieuCumRap from "../HomePage/LichChieuCumRap";
+import "./taoLichChieu.css";
 
 const TaoLichChieu = () => {
+  const [rap, setLich] = useState([]);
+  useEffect(() => {
+    quanLyRapServ
+      .getAllRap()
+      .then((res) => {
+        console.log(res);
+        setLich(res.data.content);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   const formik = useFormik({
     initialValues: {
       heThongRap: "",
@@ -51,6 +66,7 @@ const TaoLichChieu = () => {
     setFieldValue,
     reset,
   } = formik;
+
   return (
     <div>
       <h2 className="font-bold text-2xl mb-5">Tạo lịch chiếu</h2>
@@ -62,16 +78,20 @@ const TaoLichChieu = () => {
           >
             Hệ Thống Rạp
           </label>
-          <input
-            type="text"
-            id="heThongRap"
-            name="heThongRap"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-            placeholder="Vui lòng nhập cụm rạp"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.heThongRap}
-          />
+          <select>
+            {rap.map((item, index) => {
+              return (
+                <option value={item.maHeThongRap}>{item.maHeThongRap}</option>
+              );
+            })}
+          </select>
+          {/* // type="text" // id="heThongRap" // name="heThongRap" //
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm
+          rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
+          p-2.5 " // placeholder="Vui lòng nhập cụm rạp" // onChange=
+          {handleChange}
+          // onBlur={handleBlur}
+          // value={values.heThongRap} */}
           {/* {errors.taiKhoan && touched.taiKhoan ? (
             <p className="text-red-500 text-xs mt-1">{errors.taiKhoan}</p>
            ) : null} */}
@@ -84,7 +104,21 @@ const TaoLichChieu = () => {
           >
             Cụm Rạp
           </label>
-          <input
+          <select className="w-1/2 h-1/2">
+            {rap.map((item, index) => {
+              return (
+                <option>
+                  {" "}
+                  <LichChieuCumRap
+                    maHeThongRap={item.maHeThongRap}
+                    className="w-10"
+                  />
+                </option>
+              );
+            })}
+          </select>
+
+          {/* <input
             type="text"
             id="cumRap"
             name="cumRap"
@@ -93,7 +127,7 @@ const TaoLichChieu = () => {
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.cumRap}
-          />
+          /> */}
           {/* {errors.taiKhoan && touched.taiKhoan ? (
             <p className="text-red-500 text-xs mt-1">{errors.taiKhoan}</p>
            ) : null} */}

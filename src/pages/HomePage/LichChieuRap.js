@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Tabs } from 'antd';
-import { quanLyRapServ } from '../../services/quanLyRapServ';
-import LichChieuCumRap from './LichChieuCumRap';
+import React, { useEffect, useState } from "react";
+import { Tabs } from "antd";
+import { quanLyRapServ } from "../../services/quanLyRapServ";
+import LichChieuCumRap from "./LichChieuCumRap";
 const LichChieuRap = () => {
   const [rap, setRap] = useState([]);
   // const [maHeThongRap, setMaHeThongRap] = useState('');
@@ -23,13 +23,13 @@ const LichChieuRap = () => {
       <div className="container">
         <Tabs
           defaultActiveKey="1"
-          tabPosition={'left'}
+          tabPosition={"left"}
           // style={{
           //   height: 220,
           // }}
           // 4 key =" abc", key="xyz"
           style={{
-            border: '1px solid #8080806e',
+            border: "1px solid #8080806e",
           }}
           items={rap.map((item, index) => {
             return {
