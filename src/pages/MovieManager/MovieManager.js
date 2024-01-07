@@ -1,6 +1,4 @@
 
-import Link from "antd/es/typography/Link";
-
 import React, { useEffect, useState } from 'react';
 import { quanLyPhimServ } from '../../services/quanLyPhimServ';
 import { Table, Tag, Space } from 'antd';
