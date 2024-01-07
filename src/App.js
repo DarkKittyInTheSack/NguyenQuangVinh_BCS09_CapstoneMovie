@@ -27,10 +27,11 @@ function App() {
         </Route>
         <Route element={<AdminTemplate />} path="/admin">
           <Route index element={<MovieManager />} />
-          <Route element={<UserManager />} path="manager-user" />
+          <Route element={<UserManager />} path="manager-user"/>
           <Route element={<AddMovie />} path="add-movie" />
           <Route element={<Films />} path="films" />
           <Route element={<TaoLichChieu />} path="taolichchieu" />
+          
         </Route>
         {/* // <Route element={<TaoLichChieu />}></Route> */}
         <Route element={<Login />} path="/login"></Route>

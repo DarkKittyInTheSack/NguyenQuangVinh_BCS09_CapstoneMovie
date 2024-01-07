@@ -59,11 +59,9 @@ const AdminTemplate = () => {
               label: <Link to={"/admin/add-movie"}>Tạo phim</Link>,
             },
             {
-              key: "/admin/manager-order",
-              icon: <UploadOutlined />,
-              label: (
-                <Link to={"/admin/manager-order"}>Quản lí lịch đặt vé</Link>
-              ),
+              key: '/admin/update',
+              icon: <VideoCameraOutlined />,
+              label: <Link to={"/admin/update"}>Update</Link>,
             },
             {
               key: "/admin/films",

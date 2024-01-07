@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { quanLyNguoiDung } from "../../services/quanLyNguoiDung";
-import { Space, Table } from "antd";
+import { Table } from "antd";
+import { Link } from "react-router-dom";
 
 const columns = [
   {
@@ -25,95 +26,74 @@ const columns = [
     key: "soDT",
   },
   {
-    title: "Mật khẩu",
-    dataIndex: "matKhau",
-    key: "matKhau",
-  },
-  {
-    title: "Mã Loại Người Dùng",
-    dataIndex: "maLoaiNguoiDung",
-    key: "maLoaiNguoiDung",
-  },
-  {
     title: "Hành động",
     key: "hanhDong",
     render: (_, record) => (
       <div className="space-x-3">
         <button className="text-white bg-red-600 py-2 px-4 rounded-md">
-          Sửa
-        </button>
-        <button className="text-white bg-yellow-600 py-2 px-4 rounded-md">
           Xóa
         </button>
+        <Link to={`update/${record.taiKhoan}`} className="text-white bg-yellow-600 py-2 px-4 rounded-md">
+          Sửa
+        </Link>
       </div>
     ),
   },
 ];
 
+let displayData = [],searchListData=[]
+
 const UserManager = () => {
   const [listUser, setListUser] = useState([]);
-  // const [listSearchUser, setSearchUser] = useState([]);
-
-  console.log(listUser);
   useEffect(() => {
     quanLyNguoiDung
       .getAllUser()
       .then((res) => {
-        console.log(res);
-        setListUser(res.data.content);
+        res.data.content.map((item) =>{
+          const {maLoaiNguoiDung} = item
+          if(maLoaiNguoiDung === 'KhachHang'){
+            displayData.push(item)
+          }
+        })
+        setListUser(displayData)
       })
       .catch((err) => {
         console.log(err);
       });
-    // quanLyNguoiDung
-    //   .timNguoiDung()
-    //   .then((res) => {
-    //     console.log(res);
-    //     setSearchUser(res.data.content);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+
+    
   }, []);
 
   return (
     <div>
       <h2 className="font-bold text-2xl">Thêm Người Dùng</h2>
-      {/* <div>
-        <h2 className="font-bold text-1xl">Tìm kiếm người dùng</h2>
-        <input
-          oninput="searchInfoUser(event)"
-          type="text"
-          class="form-control"
-          id="timKiemSinhVien"
-        />
-      </div> */}
       <div>
-        <label for="timKiemSinhVien">Tìm kiếm sinh viên</label>
-        <input
-          oninput="searchInfoUser(event)"
-          type="text"
-          class="form-control"
-          id="timKiemNguoiDung"
-          placeholder="Tìm kiếm theo tên"
-        />
-        <button className="text-white bg-yellow-600 py-1 px-2 rounded-md ">
-          tìm
-        </button>
+      <input
+            type="text"
+            id="moTa"
+            name="moTa"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 my-3"
+            placeholder="Nhập tài khoản bạn muốn tìm kiếm"
+            onChange={(event) =>{
+              const searchKey = event.target.value.trim()
+              searchListData = []
+              searchKey === '' ?
+              searchListData = displayData :
+              quanLyNguoiDung.timNguoiDung(searchKey)
+              .then((result) => {
+                result.data.content.map((item) =>{
+                  const {maLoaiNguoiDung,taiKhoan} = item
+                  if(maLoaiNguoiDung === 'KhachHang' && taiKhoan.toLowerCase().includes(searchKey.toLowerCase())){
+                    searchListData.push(item)
+                  }
+                })
+                setListUser(searchListData)
+              }).catch((err) => {
+                console.log(err)
+              });
+            }}
+          />
       </div>
-      {/* <input type="text" /> */}
-      {/* <Table
-        columns={columns}
-        dataSource={listUser}
-        // dataSource={listMovie}
-        // pagination={{
-        //   // pageSize giúp giới hạn số phần tử trên mỗi trang
-        //   // pageSize: 7,
-        //   // current giúp đưa người dùng tới trang mà người dùng muốn
-        //   // current: 8,
-        //   // total
-        // }}
-      /> */}
       <Table
         columns={columns}
         dataSource={listUser}

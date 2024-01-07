@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import { userServ } from '../../services/userServ';
 import { message } from 'antd';
 import { saveLocalStore } from '../../utils/local';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { saveInfoUser } from '../../redux/slice/userSlice';
 import './Login.scss'
@@ -120,13 +120,20 @@ const Login = () => {
                     </p>
                   ) : null}
                 </div>
-                <div>
+                <div className='flex'>
                   <button
                     type="submit"
-                    className="py-2 px-5 bg-black text-white rounded-md hover:bg-opacity-70 duration-500"
+                    className="py-2 px-5 mr-5 bg-black text-white rounded-md hover:bg-opacity-70 duration-500"
                   >
                     Đăng nhập
                   </button>
+
+                  <Link
+                    to={'/signup'}
+                    className="py-2 px-5 mx-5 bg-black text-white rounded-md hover:bg-opacity-70 duration-500"
+                  >
+                    Đăng ký
+                  </Link>
                 </div>
               </form>
             </div>

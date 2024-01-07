@@ -85,16 +85,6 @@ const TaoLichChieu = () => {
               );
             })}
           </select>
-          {/* // type="text" // id="heThongRap" // name="heThongRap" //
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm
-          rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
-          p-2.5 " // placeholder="Vui lòng nhập cụm rạp" // onChange=
-          {handleChange}
-          // onBlur={handleBlur}
-          // value={values.heThongRap} */}
-          {/* {errors.taiKhoan && touched.taiKhoan ? (
-            <p className="text-red-500 text-xs mt-1">{errors.taiKhoan}</p>
-           ) : null} */}
         </div>
 
         <div>
@@ -117,20 +107,6 @@ const TaoLichChieu = () => {
               );
             })}
           </select>
-
-          {/* <input
-            type="text"
-            id="cumRap"
-            name="cumRap"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-            placeholder="Vui lòng nhập cụm rạp"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.cumRap}
-          /> */}
-          {/* {errors.taiKhoan && touched.taiKhoan ? (
-            <p className="text-red-500 text-xs mt-1">{errors.taiKhoan}</p>
-           ) : null} */}
         </div>
 
         <div>
@@ -150,9 +126,6 @@ const TaoLichChieu = () => {
             // changeOnBlur={handleBlur}
             value={values.ngayKhoiChieu}
           />
-          {/* {errors.taiKhoan && touched.taiKhoan ? (
-             <p className="text-red-500 text-xs mt-1">{errors.taiKhoan}</p>
-           ) : null} */}
         </div>
 
         <div>
