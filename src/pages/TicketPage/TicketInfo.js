@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Table } from "antd";
 import Note from "./Note";
 import { seatSetting } from "../../services/seatSetting";
-import { render } from "@testing-library/react";
 
 const TicketInfo = ({ tenPhim, gioChieu }) => {
-  const dataForTable = (name,time) =>{
+  const dataForTable = (name,timeFilm) =>{
     const arr = []
         const currentArr = seatSetting.getItemFromStorage()
         if(currentArr!= null){
-            currentArr.map((item,index) =>{
+            currentArr.map((item) =>{
                 const {film,time} = item
-                if(film.includes(name) && time.includes(time)){
+                if(film.includes(name) && time.includes(timeFilm)){
                     arr.push(item)
                 }
             })
@@ -29,11 +28,27 @@ const TicketInfo = ({ tenPhim, gioChieu }) => {
       title: "Số ghế",
       dataIndex: "arrSeat",
       key: "arrSeat",
+      render: (_,record) =>{
+        const {arrSeat} = record
+        return(
+            arrSeat.map((item,index) =>{
+                return <p className='mx-2'>{item}</p>
+            })
+        )
+      }
     },
     {
       title: "Giá tiền",
-      dataIndex: "address",
-      key: "address",
+      dataIndex: "arrPrice",
+      key: "arrPrice",
+      render: (_,record) =>{
+        const {arrPrice} = record
+        return(
+          arrPrice.map((item,index) =>{
+                return <p className='mx-2'>{item}</p>
+            })
+        )
+      }
     },
   ];
 

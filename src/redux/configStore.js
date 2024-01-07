@@ -4,6 +4,7 @@ import movieSlice from './slice/movieSlice';
 import loadingSlice from './slice/loadingSlice';
 import ticketSlice from './slice/ticketSlice';
 import filmSlice from './slice/filmSlice';
+import ticketManagerSlice from './slice/ticketManagerSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     movieSlice,
     loadingSlice,
     ticketSlice,
-    filmSlice
+    filmSlice,
+    ticketManagerSlice
   },
 });

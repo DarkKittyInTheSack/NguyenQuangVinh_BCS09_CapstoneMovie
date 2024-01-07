@@ -13,7 +13,7 @@ const Screen = ({tenPhim,gioChieu}) => {
     user ?
     seatPickData.customer = user.hoTen : seatPickData.customer = 'Customer'
 
-    let arrSeatChoose = [],arrPrice = []
+    let arrSeatChoose = [],arrPrices = []
 
     const [arrData,setData] = useState([])
     useEffect(() =>{
@@ -62,11 +62,11 @@ const Screen = ({tenPhim,gioChieu}) => {
                           onChange={(event) => {
                             if(event.target.checked){
                               arrSeatChoose.push(soGhe)
-                              arrPrice.push(gia)
+                              arrPrices.push(gia)
                             }else{
                               if(arrSeatChoose.includes(soGhe)){
                                 arrSeatChoose.splice(arrSeatChoose.indexOf(soGhe),1)
-                                arrPrice.splice(arrSeatChoose.indexOf(gia),1)
+                                arrPrices.splice(arrSeatChoose.indexOf(gia),1)
                               }
                             }
 
@@ -87,13 +87,15 @@ const Screen = ({tenPhim,gioChieu}) => {
           onClick={() => {
             if(arrData != null){
               for(let item of arrData){
-                const {customer,arrSeat} = item
-                if(customer.includes(user.hoTen) === true){
+                const {customer,arrSeat,arrPrice,time} = item
+                if(customer.includes(user.hoTen) && time.includes(gioChieu)){
                   arrSeatChoose.map((item) => arrSeat.push(item))
+                  arrPrices.map((item) => arrPrice.push(item))
                   seatSetting.removeSeatList()
                   seatSetting.addSeatListToStorage(arrData)
                 }else{
                   seatPickData.arrSeat = arrSeatChoose
+                  seatPickData.arrPrice = arrPrices
                   arrData.push(seatPickData)
                   seatSetting.removeSeatList()
                   seatSetting.addSeatListToStorage(arrData)
@@ -103,6 +105,7 @@ const Screen = ({tenPhim,gioChieu}) => {
             }else{
               let tempArr = []
               seatPickData.arrSeat = arrSeatChoose
+              seatPickData.arrPrice = arrPrices
               tempArr.push(seatPickData)
               seatSetting.removeSeatList()
               seatSetting.addSeatListToStorage(tempArr)

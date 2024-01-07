@@ -15,7 +15,6 @@ const AdminTemplate = () => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
-  console.log(location);
 
   useEffect(() => {
     // kiểm tra người dùng nếu không phải admin sẽ đá người dùng về trang google hoặc bất kì trang bạn muốn
@@ -61,7 +60,7 @@ const AdminTemplate = () => {
               key: '/admin/manager-order',
               icon: <UploadOutlined />,
               label: (
-                <Link to={'/admin/manager-order'}>Quản lí lịch đặt vé</Link>
+                <Link to={'/admin/ticket-manager'}>Quản lí lịch đặt vé</Link>
               ),
             },
           ]}

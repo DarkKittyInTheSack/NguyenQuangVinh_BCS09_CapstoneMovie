@@ -12,6 +12,7 @@ import AddMovie from './pages/AddMovie/AddMovie';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
 import TicketPage from './pages/TicketPage/TicketPage';
 import SignUp from "./pages/SignUp/SignUp";
+import TicketManagerPage from "./pages/TicketManager/TicketManagerPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route index element={<MovieManager />} />
           <Route element={<UserManager />} path="manager-user" />
           <Route element={<AddMovie />} path="add-movie" />
+          <Route element={<TicketManagerPage />} path="ticket-manager" />
         </Route>
         <Route element={<Login />} path="/login"></Route>
         <Route element={<SignUp />} path="/signup"></Route>
