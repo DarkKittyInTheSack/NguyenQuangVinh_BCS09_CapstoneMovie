@@ -58,12 +58,12 @@ const LichChieuCumRap = ({ maHeThongRap }) => {
                       {/* cột phải hiển thị tên phim và suất chiếu  */}
                       <div className="col_right">
                         <div>
-                          <Link to={`/detail/Laboriosam%20ex%20quasi`} className="font-medium text-lg">
+                          <button className="font-medium text-lg">
                             <span className="text-white p-1 bg-orange-600 rounded mr-2">
                               C18
                             </span>
                             {item.tenPhim}
-                          </Link>
+                          </button>
                           {/* danh sách 4 lịch chiếu  */}
                           <div className="grid grid-cols-2 gap-5 mt-3">
                             {item.lstLichChieuTheoPhim

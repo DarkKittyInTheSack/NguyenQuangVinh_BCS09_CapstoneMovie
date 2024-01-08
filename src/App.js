@@ -12,6 +12,10 @@ import AddMovie from './pages/AddMovie/AddMovie';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
 import TicketPage from './pages/TicketPage/TicketPage';
 import SignUp from "./pages/SignUp/SignUp";
+
+import TicketManagerPage from "./pages/TicketManager/TicketManagerPage";
+import UpdateUser from "./pages/UserManager/UpdateUser";
+
 import Films from "./pages/Films/Films";
 import TaoLichChieu from "./pages/TaoLichChieu/TaoLichChieu";
 
@@ -29,9 +33,13 @@ function App() {
           <Route index element={<MovieManager />} />
           <Route element={<UserManager />} path="manager-user"/>
           <Route element={<AddMovie />} path="add-movie" />
+
+          <Route element={<TicketManagerPage />} path="ticket-manager" />
+          <Route element={<UpdateUser />} path=":id" />
+
           <Route element={<Films />} path="films" />
           <Route element={<TaoLichChieu />} path="taolichchieu" />
-          
+
         </Route>
         {/* // <Route element={<TaoLichChieu />}></Route> */}
         <Route element={<Login />} path="/login"></Route>

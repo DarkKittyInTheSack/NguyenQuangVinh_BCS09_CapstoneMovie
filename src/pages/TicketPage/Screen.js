@@ -3,15 +3,25 @@ import { useDispatch, useSelector } from 'react-redux'
 import { seatSetting } from '../../services/seatSetting'
 import { getTicketAsyncThunk } from '../../redux/slice/ticketSlice'
 
-const Screen = () => {
+const Screen = ({tenPhim,gioChieu}) => {
     const {listSeat} = useSelector((state) => state.ticketSlice)
+    const {user} = useSelector((state) => state.userSlice)
     const dispatch = useDispatch()
     let seatPickData = {}
-    let arrSeatChoose = [],arrPrice = []
+    seatPickData.film = tenPhim
+    seatPickData.time = gioChieu
+    user ?
+    seatPickData.customer = user.hoTen : seatPickData.customer = 'Customer'
 
+    let arrSeatChoose = [],arrPrices = []
+
+    const [arrData,setData] = useState([])
     useEffect(() =>{
         dispatch(getTicketAsyncThunk({}))
+        setData(seatSetting.getItemFromStorage())
     },[])
+
+    console.log(arrData);
   return (
     <div>
         <div className="mx-auto my-3">
@@ -38,7 +48,7 @@ const Screen = () => {
             return (
               <div>
                 <div className="flex justify-between items-center" key={index}>
-                  <p className="rowNumber font-bold text-xl text-center">
+                  <p className="rowNumber font-bold text-xl text-center" key={index}>
                     {hang}
                   </p>
                   <div className="flex justify-between items-center">
@@ -52,11 +62,11 @@ const Screen = () => {
                           onChange={(event) => {
                             if(event.target.checked){
                               arrSeatChoose.push(soGhe)
-                              arrPrice.push(gia)
+                              arrPrices.push(gia)
                             }else{
                               if(arrSeatChoose.includes(soGhe)){
                                 arrSeatChoose.splice(arrSeatChoose.indexOf(soGhe),1)
-                                arrPrice.splice(arrSeatChoose.indexOf(gia),1)
+                                arrPrices.splice(arrSeatChoose.indexOf(gia),1)
                               }
                             }
 
@@ -75,11 +85,33 @@ const Screen = () => {
         </div>
         <button
           onClick={() => {
-            seatPickData.customer = ''
-            seatPickData.arrSeat = arrSeatChoose
-            seatPickData.price = arrPrice
+            if(arrData != null){
+              for(let item of arrData){
+                const {customer,arrSeat,arrPrice,time} = item
+                if(customer.includes(user.hoTen) && time.includes(gioChieu)){
+                  arrSeatChoose.map((item) => arrSeat.push(item))
+                  arrPrices.map((item) => arrPrice.push(item))
+                  seatSetting.removeSeatList()
+                  seatSetting.addSeatListToStorage(arrData)
+                }else{
+                  seatPickData.arrSeat = arrSeatChoose
+                  seatPickData.arrPrice = arrPrices
+                  arrData.push(seatPickData)
+                  seatSetting.removeSeatList()
+                  seatSetting.addSeatListToStorage(arrData)
+                  break;
+                }
+              }
+            }else{
+              let tempArr = []
+              seatPickData.arrSeat = arrSeatChoose
+              seatPickData.arrPrice = arrPrices
+              tempArr.push(seatPickData)
+              seatSetting.removeSeatList()
+              seatSetting.addSeatListToStorage(tempArr)
+            }
 
-            seatSetting.addSeatListToStorage(seatPickData)
+            console.log(arrData);
           }}
           type="button"
           className="text-white mx-auto bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-3 my-3 mx-auto"

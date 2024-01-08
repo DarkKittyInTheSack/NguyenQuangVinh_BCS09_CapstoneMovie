@@ -8,4 +8,13 @@ export const quanLyNguoiDung = {
       `/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP00&tuKhoa=${key}`
     );
   },
+
+  updateUser: (data) =>{
+    return https.put(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,data)
+  },
+
+  deleteUser: (id) =>{
+    return https.delete(`/api/QuanLyNguoiDung/XoaNguoiDung`,id)
+  }
 };
+

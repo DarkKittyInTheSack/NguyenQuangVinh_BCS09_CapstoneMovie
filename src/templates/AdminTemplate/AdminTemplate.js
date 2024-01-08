@@ -16,7 +16,6 @@ const AdminTemplate = () => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
-  console.log(location);
 
   useEffect(() => {
     // kiểm tra người dùng nếu không phải admin sẽ đá người dùng về trang google hoặc bất kì trang bạn muốn
@@ -59,6 +58,11 @@ const AdminTemplate = () => {
               label: <Link to={"/admin/add-movie"}>Tạo phim</Link>,
             },
             {
+              key: '/admin/manager-order',
+              icon: <UploadOutlined />,
+              label: (
+                <Link to={'/admin/ticket-manager'}>Quản lí lịch đặt vé</Link>
+              ),
               key: '/admin/update',
               icon: <VideoCameraOutlined />,
               label: <Link to={"/admin/update"}>Update</Link>,
@@ -67,6 +71,7 @@ const AdminTemplate = () => {
               key: "/admin/films",
               icon: <VideoCameraOutlined />,
               label: <Link to={"/admin/films"}>Films</Link>,
+
             },
             // {
             //   key: "/admin/taolichchieu",

@@ -21,10 +21,7 @@ const ticketSlice = createSlice({
   reducers: {},
   extraReducers: (builder) =>{
     builder.addCase(getTicketAsyncThunk.fulfilled, (state,action) =>{
-        
-        console.log(action.payload)
         state.listSeat = action.payload
-        console.log(state.listSeat);
     } )
   }
 });
