@@ -17,4 +17,7 @@ export const quanLyPhimServ = {
   taolichchieu: (data) => {
     return https.post("/api/QuanLyDatVe/TaoLichChieu", data);
   },
+  layThongTinLichChieuPhim: (filmID) =>{
+    return https.get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${filmID}`)
+  }
 };

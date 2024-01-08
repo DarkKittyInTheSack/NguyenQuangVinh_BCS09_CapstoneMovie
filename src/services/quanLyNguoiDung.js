@@ -10,7 +10,7 @@ export const quanLyNguoiDung = {
   },
 
   updateUser: (data) =>{
-    return https.put(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,data)
+    return https.post(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,data)
   },
 
   deleteUser: (id) =>{

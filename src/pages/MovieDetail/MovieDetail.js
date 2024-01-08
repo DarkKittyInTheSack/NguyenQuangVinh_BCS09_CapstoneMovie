@@ -13,7 +13,6 @@ const MovieDetail = () => {
     useEffect(() =>{
       quanLyDanhSachPhim.getMovieByID(location.pathname.split('/')[2])
       .then((result) => {
-        console.log(result.data.content)
         setMovie(result.data.content)
       }).catch((err) => {
         console.log(err)
@@ -30,7 +29,7 @@ const MovieDetail = () => {
         danhGia = {movie.danhGia} 
         trailer = {movie.trailer}/>
 
-        <ThongTinCumRap movieId = {movie.maPhim}/>
+        <ThongTinCumRap film = {location.pathname.split('/')[2]}/>
         <RelativeMovies/>
     </div>
   )

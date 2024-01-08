@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const ThongTinPhim = ({movieId,hinhAnh,tenPhim,moTa,ngayKhoiChieu,danhGia,trailer}) => {
-
+    console.log(movieId);
   return (
     <div className='container my-4 bg-slate-600 sm:w-full'>
         return <div className="movie_info flex sm:flex-col md:flex-row md:text-left mt-5 justify-center"> 

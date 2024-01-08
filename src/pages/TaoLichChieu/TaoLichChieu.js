@@ -4,55 +4,61 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { quanLyPhimServ } from "../../services/quanLyPhimServ";
 import { quanLyRapServ } from "../../services/quanLyRapServ";
-import LichChieuCumRap from "../HomePage/LichChieuCumRap";
+import { Link, useLocation } from 'react-router-dom'
 import "./taoLichChieu.css";
+import { quanLyDanhSachPhim } from "../../services/quanLyDanhSachPhim";
 
 const TaoLichChieu = () => {
   const [rap, setLich] = useState([]);
+  const [filmData, setFilmData] = useState({});
+  const [heThongRapDaChon, setHeThongRap] = useState([]);
+  const [maRapDaChon, setMaRapDaChon] = useState('');
+  const [ngayThangDaChon, setDatetimePicked] = useState('');
+  const location = useLocation()
   useEffect(() => {
     quanLyRapServ
       .getAllRap()
       .then((res) => {
-        console.log(res);
         setLich(res.data.content);
       })
       .catch((err) => {
         console.log(err);
       });
+
+      quanLyDanhSachPhim.getMovieByID(location.pathname.split('/')[3])
+      .then((result) => {
+        setFilmData(result.data.content)
+      }).catch((err) => {
+        console.log(err)
+      });
+
   }, []);
   const formik = useFormik({
     initialValues: {
-      heThongRap: "",
-      cumRap: "",
-      ngayKhoiChieu: "",
-      gioKhoiChieu: "",
-      giaVe: "",
+      maPhim: filmData.maPhim ? Number(filmData.maPhim) : 0,
+      ngayChieuGioChieu: String(ngayThangDaChon),
+      maRap: maRapDaChon,
+      giaVe: 0,
     },
-    onSubmit: (values, resetForm) => {
+    enableReinitialize: true,
+    onSubmit: (values, {resetForm}) => {
       console.log(values);
       // convert dữ liệu ngày giờ
 
-      const formData = new FormData();
+      const formData = {};
       for (let key in values) {
-        console.log(key);
-        if (key == "ngayKhoiChieu") {
-          formData.append(key, moment(values[key].ngayKhoiChieu));
-        } else {
-          formData.append(key, values[key]);
-        }
+        formData[key] =  values[key]
       }
-      formData.append("maNhom", "GP08");
+
       quanLyPhimServ
         .taolichchieu(formData)
         .then((res) => {
           resetForm();
-          // setImage("");
-          // thông báo
-          // Chuyển hướng người dùng về lại trang quản lí phim
+          window.location.href = "http://localhost:3000/admin/"
         })
         .catch((err) => {
           console.log(err);
-          // thông báo lí do chưa tạo được
+
         });
     },
   });
@@ -69,8 +75,15 @@ const TaoLichChieu = () => {
 
   return (
     <div>
+
+      <Link to={'/admin/'} className="font-medium px-2 py-1 mb-3 inline-block rounded text-white bg-red-700">Trở lại</Link>
+
       <h2 className="font-bold text-2xl mb-5">Tạo lịch chiếu</h2>
-      <form className="space-y-5">
+      <div>
+        <img src={filmData.hinhAnh} alt="" className="w-1/6" />
+        <p className="my-2 text-base font-medium text-slate-800">{filmData.tenPhim}</p>
+      </div>
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label
             htmlFor="heThongRap"
@@ -78,7 +91,16 @@ const TaoLichChieu = () => {
           >
             Hệ Thống Rạp
           </label>
-          <select>
+          <select onChange={(data) =>{
+            quanLyRapServ.layThongTinCumRapTheoHeThong(data.target.value)
+            .then((result) => {
+              let arr = result.data.content
+              setHeThongRap(arr)
+            }).catch((err) => {
+              console.log(err)
+            });
+          }} 
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
             {rap.map((item, index) => {
               return (
                 <option value={item.maHeThongRap}>{item.maHeThongRap}</option>
@@ -94,16 +116,20 @@ const TaoLichChieu = () => {
           >
             Cụm Rạp
           </label>
-          <select className="w-1/2 h-1/2">
-            {rap.map((item, index) => {
+          <select id="maRap" name="maRap" onChange={(event) =>{
+            setMaRapDaChon(event.target.value)
+             }} 
+             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            {heThongRapDaChon.map((item) => {
+              const {tenCumRap, danhSachRap,maCumRap} = item
               return (
-                <option>
-                  {" "}
-                  <LichChieuCumRap
-                    maHeThongRap={item.maHeThongRap}
-                    className="w-10"
-                  />
-                </option>
+                danhSachRap.map((item) =>{
+                    const {maRap,tenRap} = item
+                    return (
+                      <option value={maCumRap} key={maRap}>{tenCumRap} - {tenRap}</option>
+                    )
+                })
+                
               );
             })}
           </select>
@@ -114,41 +140,21 @@ const TaoLichChieu = () => {
             htmlFor="ngayKhoiChieu"
             className="block mb-2 text-sm font-medium text-gray-900 "
           >
-            Ngày khởi chiếu
+            Ngày khởi chiếu giờ chiếu
           </label>
           <DatePicker
-            onChange={(date, dateString) => {
-              console.log(date);
-              setFieldValue("ngayKhoiChieu", date);
-              // setFieldValue("ngayKhoiChieu", dateString);
-            }}
-            format={"DD-MM-YYYY"}
+            onChange={
+              (date, dateString) => {
+                // setDatetimePicked(dateString)
+              setFieldValue("ngayChieuGioChieu", date);
+              setDatetimePicked(dateString)
+            }
+          }
+            format={"DD/MM/YYYY hh:mm:ss"}
             // changeOnBlur={handleBlur}
-            value={values.ngayKhoiChieu}
           />
         </div>
 
-        <div>
-          <label
-            htmlFor="gioKhoiChieu"
-            className="block mb-2 text-sm font-medium text-gray-900 "
-          >
-            Giờ khởi chiếu
-          </label>
-          <input
-            type="text"
-            id="gioKhoiChieu"
-            name="gioKhoiChieu"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-            placeholder="Vui lòng nhập giờ khởi chiếu"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.gioKhoiChieu}
-          />
-          {/* {errors.taiKhoan && touched.taiKhoan ? (
-            <p className="text-red-500 text-xs mt-1">{errors.taiKhoan}</p>
-           ) : null} */}
-        </div>
         <div>
           <label
             htmlFor="giaVe"
@@ -160,7 +166,7 @@ const TaoLichChieu = () => {
             type="text"
             id="giaVe"
             name="giaVe"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Vui lòng nhập giá vé"
             onChange={handleChange}
             onBlur={handleBlur}

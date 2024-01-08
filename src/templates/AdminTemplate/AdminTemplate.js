@@ -60,18 +60,8 @@ const AdminTemplate = () => {
             {
               key: '/admin/manager-order',
               icon: <UploadOutlined />,
-              label: (
+              label: 
                 <Link to={'/admin/ticket-manager'}>Quản lí lịch đặt vé</Link>
-              ),
-              key: '/admin/update',
-              icon: <VideoCameraOutlined />,
-              label: <Link to={"/admin/update"}>Update</Link>,
-            },
-            {
-              key: "/admin/films",
-              icon: <VideoCameraOutlined />,
-              label: <Link to={"/admin/films"}>Films</Link>,
-
             },
             // {
             //   key: "/admin/taolichchieu",

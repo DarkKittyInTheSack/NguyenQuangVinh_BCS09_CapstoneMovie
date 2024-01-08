@@ -48,7 +48,6 @@ const MovieManager = () => {
       title: "Hành động",
       key: "hanhDong",
       render: (_, record) => {
-        console.log(record);
         return (
           <div className="space-x-3">
             <button
@@ -73,8 +72,13 @@ const MovieManager = () => {
               to={"add-movie"}
               className="text-white bg-yellow-600 py-2 px-4 rounded-md"
             >
-
               Sửa
+            </Link>
+            <Link
+              to={`/admin/taolichchieu/${record.maPhim}`}
+              className="ml-5 py-2 px-5 bg-black text-white rounded-md hover:bg-opacity-70 duration-500"
+            >
+              Tạo lịch chiếu <span aria-hidden="true">→</span>
             </Link>
           </div>
         );

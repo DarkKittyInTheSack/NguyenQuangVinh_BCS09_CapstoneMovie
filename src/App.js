@@ -38,7 +38,7 @@ function App() {
           <Route element={<UpdateUser />} path=":id" />
 
           <Route element={<Films />} path="films" />
-          <Route element={<TaoLichChieu />} path="taolichchieu" />
+          <Route element={<TaoLichChieu />} path="taolichchieu/:id" />
 
         </Route>
         {/* // <Route element={<TaoLichChieu />}></Route> */}
