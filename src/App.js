@@ -13,6 +13,7 @@ import MovieDetail from './pages/MovieDetail/MovieDetail';
 import TicketPage from './pages/TicketPage/TicketPage';
 import SignUp from "./pages/SignUp/SignUp";
 import TicketManagerPage from "./pages/TicketManager/TicketManagerPage";
+import UpdateUser from "./pages/UserManager/UpdateUser";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route element={<UserManager />} path="manager-user" />
           <Route element={<AddMovie />} path="add-movie" />
           <Route element={<TicketManagerPage />} path="ticket-manager" />
+          <Route element={<UpdateUser />} path=":id" />
         </Route>
         <Route element={<Login />} path="/login"></Route>
         <Route element={<SignUp />} path="/signup"></Route>
