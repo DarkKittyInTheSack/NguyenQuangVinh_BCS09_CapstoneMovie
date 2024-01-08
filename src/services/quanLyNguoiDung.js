@@ -17,3 +17,4 @@ export const quanLyNguoiDung = {
     return https.delete(`/api/QuanLyNguoiDung/XoaNguoiDung`,id)
   }
 };
+
