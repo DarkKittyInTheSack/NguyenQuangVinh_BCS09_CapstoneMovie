@@ -9,12 +9,11 @@ export const quanLyNguoiDung = {
     );
   },
 
-  updateUser: (data) =>{
-    return https.post(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,data)
+  updateUser: (data) => {
+    return https.post(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`, data);
   },
 
-  deleteUser: (id) =>{
-    return https.delete(`/api/QuanLyNguoiDung/XoaNguoiDung`,id)
-  }
+  deleteUser: (id) => {
+    return https.delete(`/api/QuanLyNguoiDung/XoaNguoiDung`, id);
+  },
 };
-
