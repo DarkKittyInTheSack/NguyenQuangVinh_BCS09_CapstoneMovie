@@ -59,7 +59,7 @@ const ThongTinCumRap = ({film}) => {
 
                 <div className="grid grid-cols-3 w-1/3 ml-10 md:grid-cols-3 sm:grid-cols-2 cum_rap_time">
                   {
-                    filmSchedule.heThongRapChieu.map((item) =>{
+                    filmSchedule.length != 0 ?filmSchedule.heThongRapChieu.map((item) =>{
                       const {cumRapChieu} = item
                       return(
                         cumRapChieu.map((item) =>{
@@ -73,11 +73,11 @@ const ThongTinCumRap = ({film}) => {
                           )
                         })
                       )
-                    })
+                    }) : <div>Loading...</div>
                   }
-                  {/* <Link to={`/ticket/${film}/12h30`} className='cum_rap_item font-medium text-thin text-sm border-t-2 border-b-2 border-l-2 border-r-2 rounded mr-3 text-center py-1 border-green-700 text-gray-700 sm:mt-3'> 12h30 - 14h00</Link>
+                  <Link to={`/ticket/${film}/12h30`} className='cum_rap_item font-medium text-thin text-sm border-t-2 border-b-2 border-l-2 border-r-2 rounded mr-3 text-center py-1 border-green-700 text-gray-700 sm:mt-3'> 12h30 - 14h00</Link>
                   <Link to={`/ticket/${film}/14h30`} className='cum_rap_item font-medium text-thin text-sm border-t-2 border-b-2 border-l-2 border-r-2 rounded mr-3 text-center py-1 border-green-700 text-gray-700 sm:mt-3'> 14h30 - 16h00</Link>
-                  <Link to={`/ticket/${film}/19h00`} className='cum_rap_item font-medium text-thin text-sm border-t-2 border-b-2 border-l-2 border-r-2 rounded mr-3 text-center py-1 border-green-700 text-gray-700 sm:mt-3'> 19h00 - 21h00</Link> */}
+                  <Link to={`/ticket/${film}/19h00`} className='cum_rap_item font-medium text-thin text-sm border-t-2 border-b-2 border-l-2 border-r-2 rounded mr-3 text-center py-1 border-green-700 text-gray-700 sm:mt-3'> 19h00 - 21h00</Link>
                 </div>
               </div>
               ,

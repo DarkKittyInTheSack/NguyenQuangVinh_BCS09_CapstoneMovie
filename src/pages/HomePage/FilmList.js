@@ -12,6 +12,8 @@ const FilmList = () => {
     dispatch(getFilmListAsyncThunk())
   },[])
 
+  console.log(listFilm);
+
   return (
     <div className='container my-4'>
         <div className="flex">

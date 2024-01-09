@@ -9,7 +9,8 @@ export const quanLyRapServ = {
       `/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=GP01`
     );
   },
-  layThongTinLichChieuPhim: (maRap) =>{
-    return https.get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${Number(maRap)}`)
-  }
+  layThongTinCumRapTheoHeThong: (maRap) =>{
+    return https.get(`/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${maRap}`)
+  },
+
 };

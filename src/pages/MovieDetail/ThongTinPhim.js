@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const ThongTinPhim = ({movieId,hinhAnh,tenPhim,moTa,ngayKhoiChieu,danhGia,trailer}) => {
-    console.log(movieId);
   return (
     <div className='container my-4 bg-slate-600 sm:w-full'>
-        return <div className="movie_info flex sm:flex-col md:flex-row md:text-left mt-5 justify-center"> 
+        <div className="movie_info flex sm:flex-col md:flex-row md:text-left mt-5 justify-center"> 
                 <div className="left flex justify-between md:w-4/12 sm:w-full my-5">
                     <img src={hinhAnh} alt="" className='block w-6/12 bg-cover'/>
                 </div>
