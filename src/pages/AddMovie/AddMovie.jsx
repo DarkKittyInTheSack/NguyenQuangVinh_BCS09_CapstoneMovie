@@ -32,7 +32,7 @@ const AddMovie = () => {
           formData.append(key, values[key]);
         }
       }
-      // formData.append('maNhom', 'GP08');
+      formData.append('maNhom', 'GP02');
       quanLyPhimServ
         .addMovie(formData)
         .then((res) => {
