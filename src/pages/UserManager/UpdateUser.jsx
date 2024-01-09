@@ -44,6 +44,7 @@ const UpdateUser = () => {
             quanLyNguoiDung.updateUser(upload)
             .then((result) => {
                 resetForm()
+                window.location.href = "http://localhost:3000/admin/manager-user"
             }).catch((err) => {
                 console.log(err)
             });
